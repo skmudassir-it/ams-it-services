@@ -65,10 +65,22 @@
     "aboutText": "AMS IT Services es una empresa de TI integral con oficinas en Memphis, EE. UU. y Hyderabad, India. Durante más de 8 años, nuestros más de 50 ingenieros, diseñadores y especialistas en marketing han ayudado a empresas de todo el mundo a lanzar sitios, apps y plataformas de alto rendimiento.",
     "whyTitle": "Por qué nos eligen",
     "why": [
-      { "title": "A medida, nunca plantillas", "text": "Cada producto se diseña según su marca y su lógica de negocio." },
-      { "title": "Tecnología moderna y rápida", "text": "React, Next.js, Node.js y AWS: velocidad, SEO y escalabilidad." },
-      { "title": "Dos husos horarios, un equipo", "text": "Estrategia en EE. UU., ingeniería en India: avance las 24 horas." },
-      { "title": "Socios después del lanzamiento", "text": "Hosting, soporte y marketing de crecimiento tras la puesta en marcha." }
+      {
+        "title": "A medida, nunca plantillas",
+        "text": "Cada producto se diseña según su marca y su lógica de negocio."
+      },
+      {
+        "title": "Tecnología moderna y rápida",
+        "text": "React, Next.js, Node.js y AWS: velocidad, SEO y escalabilidad."
+      },
+      {
+        "title": "Dos husos horarios, un equipo",
+        "text": "Estrategia en EE. UU., ingeniería en India: avance las 24 horas."
+      },
+      {
+        "title": "Socios después del lanzamiento",
+        "text": "Hosting, soporte y marketing de crecimiento tras la puesta en marcha."
+      }
     ],
     "blogEyebrow": "Ideas",
     "blogTitle": "Lo último de nuestro blog",
@@ -78,11 +90,26 @@
     "eyebrow": "Cómo trabajamos",
     "title": "Un proceso probado de cinco pasos",
     "steps": [
-      { "title": "Descubrimiento", "text": "Conocemos sus objetivos, usuarios y restricciones, y definimos el éxito." },
-      { "title": "Arquitectura", "text": "Planificamos la estructura, la tecnología y el sistema de diseño." },
-      { "title": "Desarrollo ágil", "text": "Construimos en sprints cortos con demostraciones para su revisión." },
-      { "title": "Pruebas de calidad", "text": "Pruebas automatizadas y manuales en navegadores y dispositivos." },
-      { "title": "Lanzamiento y soporte", "text": "Desplegamos, monitoreamos y seguimos mejorando." }
+      {
+        "title": "Descubrimiento",
+        "text": "Conocemos sus objetivos, usuarios y restricciones, y definimos el éxito."
+      },
+      {
+        "title": "Arquitectura",
+        "text": "Planificamos la estructura, la tecnología y el sistema de diseño."
+      },
+      {
+        "title": "Desarrollo ágil",
+        "text": "Construimos en sprints cortos con demostraciones para su revisión."
+      },
+      {
+        "title": "Pruebas de calidad",
+        "text": "Pruebas automatizadas y manuales en navegadores y dispositivos."
+      },
+      {
+        "title": "Lanzamiento y soporte",
+        "text": "Desplegamos, monitoreamos y seguimos mejorando."
+      }
     ]
   },
   "cta": {
@@ -102,10 +129,22 @@
     ],
     "valuesTitle": "Nuestros valores",
     "values": [
-      { "title": "Excelencia", "text": "Cuidamos los detalles que otros pasan por alto." },
-      { "title": "Transparencia", "text": "Alcance claro, plazos honestos, sin sorpresas." },
-      { "title": "Compromiso", "text": "Tratamos su producto como si fuera nuestro." },
-      { "title": "Innovación", "text": "Usamos IA y herramientas modernas para entregar más rápido." }
+      {
+        "title": "Excelencia",
+        "text": "Cuidamos los detalles que otros pasan por alto."
+      },
+      {
+        "title": "Transparencia",
+        "text": "Alcance claro, plazos honestos, sin sorpresas."
+      },
+      {
+        "title": "Compromiso",
+        "text": "Tratamos su producto como si fuera nuestro."
+      },
+      {
+        "title": "Innovación",
+        "text": "Usamos IA y herramientas modernas para entregar más rápido."
+      }
     ],
     "officesTitle": "Nuestras oficinas",
     "usa": "Oficina central en EE. UU.",
@@ -119,7 +158,12 @@
     "learnMore": "Más información",
     "whatWeDo": "Lo que hacemos",
     "techTitle": "Construido con tecnología moderna",
-    "tech": ["Rendimiento con Next.js y React", "SEO integrado", "Adaptable a cualquier dispositivo", "Backend seguro"],
+    "tech": [
+      "Rendimiento con Next.js y React",
+      "SEO integrado",
+      "Adaptable a cualquier dispositivo",
+      "Backend seguro"
+    ],
     "related": "Servicios relacionados",
     "start": "Construya su visión"
   },
@@ -205,7 +249,31 @@
     "noAccount": "¿No tiene cuenta?",
     "haveAccount": "¿Ya tiene cuenta?",
     "sideTitle": "Un solo lugar para cada conversación",
-    "sidePoints": ["Escriba a nuestro equipo cuando quiera", "Reciba avisos de respuestas", "Portal de clientes muy pronto"]
+    "sidePoints": [
+      "Escriba a nuestro equipo cuando quiera",
+      "Reciba avisos de respuestas",
+      "Portal de clientes muy pronto"
+    ],
+    "forgot": "¿Olvidó su contraseña?",
+    "code": "Código de 6 dígitos",
+    "codeSent": "Le enviamos un nuevo código.",
+    "codeSentTo": "Enviamos un código de 6 dígitos a",
+    "verifyTitle": "Verifique su correo",
+    "verifySubtitle": "Ingrese el código que le enviamos para activar la mensajería.",
+    "verify": "Verificar correo",
+    "verified": "Correo verificado — ¡bienvenido!",
+    "noCode": "¿No recibió el código?",
+    "resend": "Reenviar código",
+    "resendIn": "Reenviar en {{s}} s",
+    "forgotTitle": "Restablezca su contraseña",
+    "forgotSubtitle": "Ingrese el correo de su cuenta y le enviaremos un código de 6 dígitos.",
+    "resetSubtitle": "Ingrese el código de su correo y elija una nueva contraseña.",
+    "sendCode": "Enviar código",
+    "resetSentTo": "Si existe una cuenta, enviamos un código a",
+    "newPassword": "Nueva contraseña",
+    "resetPassword": "Restablecer contraseña",
+    "passwordChanged": "Contraseña actualizada — ya inició sesión.",
+    "backToLogin": "Volver a iniciar sesión"
   },
   "dashboard": {
     "title": "Mis mensajes",
@@ -284,7 +352,17 @@
     "published": "Publicado",
     "draft": "Borrador",
     "date": "Fecha",
-    "noData": "Todavía no hay nada aquí."
+    "noData": "Todavía no hay nada aquí.",
+    "emailTitle": "Correo (SMTP)",
+    "emailOk": "Conectado — los correos se están enviando",
+    "emailError": "Configurado, pero la conexión falló",
+    "emailOff": "No configurado — los correos se muestran en el registro del servidor",
+    "notifies": "notificaciones a",
+    "sendTest": "Enviar prueba",
+    "recheck": "Volver a comprobar",
+    "testSent": "Correo de prueba enviado a {{to}}",
+    "verified": "Verificado",
+    "unverified": "Sin verificar"
   },
   "footer": {
     "about": "Empresa de TI integral que ofrece soluciones web, móviles, en la nube y de marketing a clientes de todo el mundo, con sede en EE. UU. e India.",
@@ -302,7 +380,12 @@
     "subtitle": "Suele responder al instante",
     "open": "Chatea con nosotros",
     "greeting": "¡Hola! 👋 Soy el asistente de AMS IT Services. Pregúnteme sobre nuestros servicios, proyectos, precios o DockPass.",
-    "suggestions": ["¿Qué servicios ofrecen?", "Háblame de DockPass", "¿Cuánto cuesta un sitio web?", "Muéstrame sus proyectos"],
+    "suggestions": [
+      "¿Qué servicios ofrecen?",
+      "Háblame de DockPass",
+      "¿Cuánto cuesta un sitio web?",
+      "Muéstrame sus proyectos"
+    ],
     "placeholder": "Escriba su pregunta…",
     "human": "¿Prefiere hablar con una persona?",
     "reset": "Nueva conversación",

@@ -19,7 +19,10 @@ export function clearSession(res) {
   res.clearCookie(COOKIE);
 }
 
-export const publicUser = (u) => u && { id: u.id, name: u.name, email: u.email, role: u.role, phone: u.phone, company: u.company, created_at: u.created_at };
+export const publicUser = (u) => u && {
+  id: u.id, name: u.name, email: u.email, role: u.role, phone: u.phone, company: u.company, created_at: u.created_at,
+  email_verified: Boolean(u.email_verified_at),
+};
 
 // Attaches req.user when a valid session cookie is present.
 export function loadUser(req, _res, next) {
@@ -37,6 +40,12 @@ export function loadUser(req, _res, next) {
 
 export function requireAuth(req, res, next) {
   if (!req.user) return res.status(401).json({ error: 'Not signed in' });
+  next();
+}
+
+export function requireVerified(req, res, next) {
+  if (!req.user) return res.status(401).json({ error: 'Not signed in' });
+  if (!req.user.email_verified_at) return res.status(403).json({ error: 'Please verify your email first', code: 'email_unverified' });
   next();
 }
 

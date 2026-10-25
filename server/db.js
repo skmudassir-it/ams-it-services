@@ -132,9 +132,37 @@ function seed() {
     })();
   }
 
+  // v2: email verification + one-time codes. Accounts created before this are treated as verified.
+  if (db.pragma('user_version', { simple: true }) < 2) {
+    db.transaction(() => {
+      const cols = db.prepare('PRAGMA table_info(users)').all().map((c) => c.name);
+      if (!cols.includes('email_verified_at')) {
+        db.exec('ALTER TABLE users ADD COLUMN email_verified_at TEXT');
+        db.exec('UPDATE users SET email_verified_at = created_at');
+      }
+      db.exec(`CREATE TABLE IF NOT EXISTS otp_codes (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        email TEXT NOT NULL COLLATE NOCASE,
+        purpose TEXT NOT NULL CHECK (purpose IN ('verify','reset')),
+        code_hash TEXT NOT NULL,
+        attempts INTEGER NOT NULL DEFAULT 0,
+        expires_at TEXT NOT NULL,
+        consumed_at TEXT,
+        created_at TEXT NOT NULL DEFAULT (datetime('now'))
+      );
+      CREATE INDEX IF NOT EXISTS idx_otp_email ON otp_codes(email, purpose);`);
+      db.pragma('user_version = 2');
+    })();
+  }
+
+  // Additive columns, checked on every start so they apply regardless of migration history.
+  if (!db.prepare('PRAGMA table_info(users)').all().some((c) => c.name === 'lang')) {
+    db.exec("ALTER TABLE users ADD COLUMN lang TEXT NOT NULL DEFAULT 'en'");
+  }
+
   const { ADMIN_EMAIL, ADMIN_PASSWORD, ADMIN_NAME } = process.env;
   if (ADMIN_EMAIL && ADMIN_PASSWORD && !db.prepare('SELECT 1 FROM users WHERE email = ?').get(ADMIN_EMAIL)) {
-    db.prepare("INSERT INTO users (name, email, password_hash, role) VALUES (?, ?, ?, 'admin')")
+    db.prepare("INSERT INTO users (name, email, password_hash, role, email_verified_at) VALUES (?, ?, ?, 'admin', datetime('now'))")
       .run(ADMIN_NAME || 'Administrator', ADMIN_EMAIL, bcrypt.hashSync(ADMIN_PASSWORD, 12));
     console.log(`Seeded admin account ${ADMIN_EMAIL}`);
   }

@@ -12,7 +12,7 @@ import { useToast } from '../context/ToastContext';
 const empty = { name: '', email: '', phone: '', message: '', date: '', time: '' };
 
 export default function Contact() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { user } = useAuth();
   const toast = useToast();
   const [type, setType] = useState('quote');
@@ -25,7 +25,7 @@ export default function Contact() {
     e.preventDefault();
     setBusy(true);
     try {
-      await api.post('/contact', { type, ...form });
+      await api.post('/contact', { type, ...form, lang: i18n.language?.startsWith('es') ? 'es' : 'en' });
       setSent(true);
       setForm(empty);
     } catch (err) {

@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { z } from 'zod';
 import { db } from '../db.js';
 import { requireAdmin, validate } from '../auth.js';
+import { emails, notify, sendMail, smtpConfig, verifySmtp } from '../mailer.js';
 
 const router = Router();
 router.use(requireAdmin);
@@ -40,7 +41,7 @@ router.get('/stats', (_req, res) => {
 
 /* ---------- Users / email list ---------- */
 router.get('/users', (req, res) => {
-  const users = db.prepare(`SELECT u.id, u.name, u.email, u.phone, u.company, u.role, u.created_at, u.last_login_at,
+  const users = db.prepare(`SELECT u.id, u.name, u.email, u.phone, u.company, u.role, u.created_at, u.last_login_at, u.email_verified_at,
       (SELECT COUNT(*) FROM threads WHERE user_id = u.id) threads
     FROM users u WHERE u.name LIKE ? OR u.email LIKE ? OR IFNULL(u.company,'') LIKE ? ORDER BY u.id DESC`)
     .all(like(req.query.q), like(req.query.q), like(req.query.q));
@@ -56,6 +57,23 @@ router.delete('/users/:id', (req, res) => {
   if (Number(req.params.id) === req.user.id) return res.status(400).json({ error: 'You cannot delete your own account' });
   db.prepare('DELETE FROM users WHERE id = ?').run(req.params.id);
   res.json({ ok: true });
+});
+
+/* ---------- Email (SMTP) ---------- */
+router.get('/email/status', async (_req, res) => {
+  const cfg = smtpConfig();
+  const check = cfg.configured ? await verifySmtp() : { ok: false, error: 'SMTP is not configured' };
+  res.json({ configured: cfg.configured, host: cfg.host, port: cfg.port, secure: cfg.secure, from: cfg.from, adminTo: cfg.adminTo, ...check });
+});
+
+router.post('/email/test', validate(z.object({ to: z.string().trim().email().max(160) })), async (req, res) => {
+  if (!smtpConfig().configured) return res.status(400).json({ error: 'SMTP is not configured — add the SMTP_* settings to .env' });
+  try {
+    await sendMail(emails.test({ to: req.body.to }));
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(502).json({ error: `Sending failed: ${e.message}` });
+  }
 });
 
 /* ---------- Subscribers ---------- */
@@ -93,12 +111,13 @@ router.get('/threads/:id', (req, res) => {
 });
 
 router.post('/threads/:id/messages', validate(z.object({ body: z.string().trim().min(1).max(5000) })), (req, res) => {
-  const thread = db.prepare('SELECT id FROM threads WHERE id = ?').get(req.params.id);
+  const thread = db.prepare('SELECT t.id, t.subject, u.name, u.email, u.lang FROM threads t JOIN users u ON u.id = t.user_id WHERE t.id = ?').get(req.params.id);
   if (!thread) return res.status(404).json({ error: 'Conversation not found' });
   db.transaction(() => {
     db.prepare("INSERT INTO messages (thread_id, sender_role, body, read_by_admin) VALUES (?, 'admin', ?, 1)").run(thread.id, req.body.body);
     db.prepare("UPDATE threads SET updated_at = datetime('now') WHERE id = ?").run(thread.id);
   })();
+  notify(emails.replyToUser({ to: thread.email, name: thread.name, subject: thread.subject, body: req.body.body, lang: thread.lang }));
   res.status(201).json({ ok: true });
 });
 

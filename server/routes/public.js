@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { z } from 'zod';
 import { db } from '../db.js';
 import { validate } from '../auth.js';
+import { emails, notify } from '../mailer.js';
 
 const router = Router();
 
@@ -36,13 +37,16 @@ const contactSchema = z.object({
   message: z.string().trim().max(5000).optional().default(''),
   date: z.string().trim().max(20).optional().default(''),
   time: z.string().trim().max(20).optional().default(''),
+  lang: z.enum(['en', 'es']).optional().default('en'),
 }).refine((d) => d.type === 'call' || d.message.length > 0, { message: 'Message is required', path: ['message'] })
   .refine((d) => d.type === 'quote' || (d.phone && d.date && d.time), { message: 'Phone, date and time are required', path: ['date'] });
 
 router.post('/contact', validate(contactSchema), (req, res) => {
-  const { type, name, email, phone, message, date, time } = req.body;
+  const { type, name, email, phone, message, date, time, lang } = req.body;
   db.prepare('INSERT INTO contact_requests (type, name, email, phone, message, date, time) VALUES (?, ?, ?, ?, ?, ?, ?)')
     .run(type, name, email, phone || null, message || null, date || null, time || null);
+  notify(emails.adminContact({ type, name, email, phone, message, date, time }));
+  notify(emails.contactAck({ to: email, name, type, lang }));
   res.status(201).json({ ok: true });
 });
 

@@ -1,11 +1,15 @@
 import { Router } from 'express';
 import { z } from 'zod';
 import { db } from '../db.js';
-import { requireAuth, validate } from '../auth.js';
+import { requireVerified, validate } from '../auth.js';
+import { emails, notify } from '../mailer.js';
 
-// Signed-in visitors' conversations with AMS IT Services.
+// Signed-in visitors' conversations with AMS IT Services (verified email required).
 const router = Router();
-router.use(requireAuth);
+router.use(requireVerified);
+
+const notifyAdmin = (req, threadId, subject, body, isNew) =>
+  notify(emails.adminMessage({ threadId, subject, name: req.user.name, email: req.user.email, body, isNew }));
 
 const newThread = z.object({
   subject: z.string().trim().min(2).max(160),
@@ -37,6 +41,7 @@ router.post('/', validate(newThread), (req, res) => {
     db.prepare("INSERT INTO messages (thread_id, sender_role, body, read_by_user) VALUES (?, 'user', ?, 1)").run(lastInsertRowid, req.body.body);
     return lastInsertRowid;
   })();
+  notifyAdmin(req, id, req.body.subject, req.body.body, true);
   res.status(201).json({ id });
 });
 
@@ -55,6 +60,7 @@ router.post('/:id/messages', validate(reply), (req, res) => {
     db.prepare("INSERT INTO messages (thread_id, sender_role, body, read_by_user) VALUES (?, 'user', ?, 1)").run(thread.id, req.body.body);
     db.prepare("UPDATE threads SET updated_at = datetime('now'), status = 'open' WHERE id = ?").run(thread.id);
   })();
+  notifyAdmin(req, thread.id, thread.subject, req.body.body, false);
   res.status(201).json({ ok: true });
 });
 

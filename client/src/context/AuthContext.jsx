@@ -17,10 +17,11 @@ export function AuthProvider({ children }) {
     return user;
   }, []);
 
+  // Resolves to { user, emailSent } — emailSent tells the verify page whether a code is already on its way.
   const register = useCallback(async (payload) => {
-    const { user } = await api.post('/auth/register', payload);
-    setUser(user);
-    return user;
+    const data = await api.post('/auth/register', payload);
+    setUser(data.user);
+    return data;
   }, []);
 
   const logout = useCallback(async () => {

@@ -6,7 +6,7 @@ This folder is a complete Docker build context: the `Dockerfile` builds the Reac
 
 In Dokploy go to **Project → Create Service → Application**, then pick one:
 
-- **Drop / Upload:** choose *Drop* as the source and upload `ams-it-services-dokploy.zip`, which is in this folder.
+- **Drop / Upload:** extract the three `ams-it-services-partN-of-3.zip` files into one folder. Zip that folder's contents so the `Dockerfile` sits at the zip root, choose *Drop* as the source, and upload the zip.
 - **Git:** push this folder to a repository and connect it.
 
 In **Build Type**, choose **Dockerfile** with path `Dockerfile` and context `.`.
@@ -22,6 +22,22 @@ CHAT_BASE_URL=https://llm.amsventures.co.in
 CHAT_API_KEY=<your gateway key>
 CHAT_MODEL=auto
 ```
+
+Email (GoDaddy SMTP) handles verification codes, password resets and notifications:
+
+```
+SITE_URL=https://amsitservices.com
+SMTP_HOST=smtpout.secureserver.net
+SMTP_PORT=465
+SMTP_SECURE=true
+SMTP_USER=mudassir@amsitservices.com
+SMTP_PASS=<mailbox password>
+MAIL_FROM=mudassir@amsitservices.com
+MAIL_FROM_NAME=AMS IT Services
+ADMIN_NOTIFY_EMAIL=mudassir@amsitservices.com
+```
+
+If your GoDaddy email is Microsoft 365, use `SMTP_HOST=smtp.office365.com`, `SMTP_PORT=587` and `SMTP_SECURE=false`, and make sure SMTP AUTH is enabled for the mailbox. After deploying, open **Admin → Overview → Email (SMTP)** and click **Send test**.
 
 Optional settings:
 - `ANTHROPIC_API_KEY`: used by the chat bot if no gateway is set.
@@ -42,6 +58,14 @@ Add your domain (e.g. `amsitservices.com`) with **container port `5000`** and HT
 ## 5. Deploy
 
 Click **Deploy**. When the health check (`/api/health`) passes, open the domain. Sign in at `/login` with the admin email and password above to reach `/admin`.
+
+## Split zips (ams-it-services-part1/2/3-of-3.zip)
+
+These hold the same content as the single zip, split into three standalone zips of about 7 MB each for upload limits. Extract **all three into the same folder** to rebuild the full project:
+- Part 1 has the Dockerfile and all the code.
+- Parts 2 and 3 have the images.
+
+Dokploy's Drop upload needs one zip, so extract the three parts, zip that folder again, and upload it. `npm run package:docker` regenerates the folder and the three parts.
 
 ## Updating
 

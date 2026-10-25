@@ -64,7 +64,17 @@ export function UsersPage() {
           empty={t('admin.noData')}
           rows={users}
           columns={[
-            { key: 'name', label: t('admin.name'), render: (u) => <span className="font-semibold">{u.name}</span> },
+            {
+              key: 'name', label: t('admin.name'),
+              render: (u) => (
+                <span className="inline-flex flex-wrap items-center justify-end gap-1.5 md:justify-start">
+                  <span className="font-semibold">{u.name}</span>
+                  <span className={`badge ${u.email_verified_at ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'}`}>
+                    {u.email_verified_at ? t('admin.verified') : t('admin.unverified')}
+                  </span>
+                </span>
+              ),
+            },
             { key: 'email', label: t('admin.email'), render: (u) => <a href={`mailto:${u.email}`} className="text-brand-indigo hover:underline">{u.email}</a> },
             { key: 'phone', label: t('admin.phone'), render: (u) => u.phone || '—' },
             { key: 'company', label: t('admin.company'), render: (u) => u.company || '—' },
