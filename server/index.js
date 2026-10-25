@@ -1,5 +1,6 @@
 import express from 'express';
 import helmet from 'helmet';
+import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import { existsSync } from 'node:fs';
@@ -23,6 +24,8 @@ const PORT = Number(process.env.PORT) || 5000;
 const distDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'client', 'dist');
 
 app.set('trust proxy', 1);
+// gzip/brotli for text payloads — the JS bundle is ~470KB raw vs ~140KB compressed.
+app.use(compression());
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {

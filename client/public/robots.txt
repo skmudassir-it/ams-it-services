@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /login
+Disallow: /register
+Disallow: /messages
+Disallow: /requests
+Disallow: /subscribers
+Disallow: /users
+Disallow: /posts
+Disallow: /api/
+
+Sitemap: https://amsitservices.com/sitemap.xml
