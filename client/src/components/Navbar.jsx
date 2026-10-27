@@ -66,17 +66,46 @@ function ServicesMenu({ onNavigate }) {
           </ul>
         </div>
       ))}
-      <Link to="/dockpass" onClick={onNavigate} className="relative hidden overflow-hidden rounded-2xl bg-slate-900 p-5 text-white md:block">
-        <img src="/dockpass/gate.webp" alt="" className="absolute inset-0 h-full w-full object-cover opacity-40" />
+      <Link to="/amserp" onClick={onNavigate} className="relative hidden overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-600 to-teal-500 p-5 text-white md:block">
+        <img src="/amserp/dashboard.jpg" alt="" className="absolute inset-0 h-full w-full object-cover object-left-top opacity-20" />
         <div className="relative flex h-full flex-col">
           <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-white/15 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide backdrop-blur">
             <Sparkles className="h-3 w-3" /> {t('hero.flagship')}
           </span>
-          <img src="/dockpass/logo.webp" alt="DockPass" className="mt-auto w-40" />
-          <p className="mt-2 text-sm text-white/85">{t('flagship.subtitle').split('—')[0]}</p>
-          <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold">{t('flagship.learnMore')} <ArrowRight className="h-4 w-4" /></span>
+          <div className="mt-auto flex items-center gap-2 pt-6">
+            <img src="/amserp/logo.svg" alt="" className="h-9 w-9" />
+            <span className="font-display text-xl font-extrabold">AMS ERP</span>
+          </div>
+          <p className="mt-2 text-sm text-white/90">{t('erp.subtitle').split(':')[0]}</p>
+          <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold">{t('erp.learnMore')} <ArrowRight className="h-4 w-4" /></span>
         </div>
       </Link>
+    </div>
+  );
+}
+
+// Company products: AMS ERP (flagship) and DockPass.
+function ProductsMenu({ onNavigate }) {
+  const { t } = useTranslation();
+  const products = [
+    { to: '/amserp', logo: <img src="/amserp/logo.svg" alt="" className="h-10 w-10" />, name: 'AMS ERP', text: t('erp.subtitle').split(':')[0], badge: t('hero.flagship') },
+    { to: '/dockpass', logo: <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-600 text-xs font-extrabold text-white">DP</span>, name: 'DockPass', text: t('flagship.subtitle').split('—')[0] },
+  ];
+  return (
+    <div className="space-y-1">
+      <p className="px-3 pb-1 text-xs font-semibold uppercase tracking-wider text-ink-muted">{t('nav.productsHint')}</p>
+      {products.map((p) => (
+        <Link key={p.to} to={p.to} onClick={onNavigate} className="flex items-start gap-3 rounded-2xl p-3 transition hover:bg-white">
+          {p.logo}
+          <span className="min-w-0">
+            <span className="flex items-center gap-2 font-display font-bold">
+              {p.name}
+              {p.badge && <span className="badge bg-gradient-to-r from-indigo-500 to-teal-500 text-[10px] text-white">{p.badge}</span>}
+            </span>
+            <span className="mt-0.5 block text-sm text-ink-soft">{p.text}</span>
+          </span>
+        </Link>
+      ))}
     </div>
   );
 }
@@ -89,6 +118,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
   const [userOpen, setUserOpen] = useState(false);
   const closeTimer = useRef();
 
@@ -102,6 +132,7 @@ export default function Navbar() {
   useEffect(() => {
     setMobileOpen(false);
     setMegaOpen(false);
+    setProductsOpen(false);
     setUserOpen(false);
   }, [location.pathname]);
 
@@ -113,7 +144,6 @@ export default function Navbar() {
     { to: '/about', label: t('nav.about') },
     { to: '/projects', label: t('nav.projects') },
     { to: '/portfolio', label: t('nav.portfolio') },
-    { to: '/dockpass', label: t('nav.dockpass'), highlight: true },
     { to: '/blog', label: t('nav.blog') },
     { to: '/contact', label: t('nav.contact') },
   ];
@@ -125,8 +155,11 @@ export default function Navbar() {
     navigate('/');
   };
 
-  const openMega = () => { clearTimeout(closeTimer.current); setMegaOpen(true); };
+  const openMega = () => { clearTimeout(closeTimer.current); setProductsOpen(false); setMegaOpen(true); };
   const closeMega = () => { closeTimer.current = setTimeout(() => setMegaOpen(false), 150); };
+  const openProducts = () => { clearTimeout(closeTimer.current); setMegaOpen(false); setProductsOpen(true); };
+  const closeProducts = () => { closeTimer.current = setTimeout(() => setProductsOpen(false), 150); };
+  const onProductPage = ['/amserp', '/dockpass'].includes(location.pathname);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
@@ -160,6 +193,31 @@ export default function Navbar() {
                             {t('nav.allServices')} <ArrowRight className="h-4 w-4" />
                           </Link>
                         </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+              <div className="relative" onMouseEnter={openProducts} onMouseLeave={closeProducts}>
+                <button
+                  onClick={() => setProductsOpen((v) => !v)}
+                  aria-expanded={productsOpen}
+                  className={`inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium transition ${onProductPage ? 'bg-white text-ink shadow-sm' : 'text-ink-soft hover:bg-white/60 hover:text-ink'}`}
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-teal-500" />
+                  {t('nav.products')} <ChevronDown className={`h-4 w-4 transition ${productsOpen ? 'rotate-180' : ''}`} />
+                </button>
+                <AnimatePresence>
+                  {productsOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.18 }}
+                      className="absolute left-0 top-full w-[26rem] pt-3"
+                    >
+                      <div className="glass-strong rounded-3xl p-3">
+                        <ProductsMenu onNavigate={() => setProductsOpen(false)} />
                       </div>
                     </motion.div>
                   )}
@@ -231,6 +289,13 @@ export default function Navbar() {
                     {t('nav.services')} <ChevronDown className="h-4 w-4 transition group-open:rotate-180" />
                   </summary>
                   <div className="pb-2 pl-2"><ServicesMenu onNavigate={() => setMobileOpen(false)} /></div>
+                </details>
+                <details className="group rounded-xl" open>
+                  <summary className="flex cursor-pointer list-none items-center justify-between rounded-xl px-4 py-3 font-semibold hover:bg-white/70">
+                    <span className="inline-flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-teal-500" />{t('nav.products')}</span>
+                    <ChevronDown className="h-4 w-4 transition group-open:rotate-180" />
+                  </summary>
+                  <div className="pb-2"><ProductsMenu onNavigate={() => setMobileOpen(false)} /></div>
                 </details>
                 {links.map((l) => (
                   <NavLink key={l.to} to={l.to} className={({ isActive }) => `rounded-xl px-4 py-3 font-semibold ${isActive ? 'bg-white shadow-sm' : 'hover:bg-white/70'}`}>{l.label}</NavLink>

@@ -37,6 +37,8 @@ MAIL_FROM_NAME=AMS IT Services
 ADMIN_NOTIFY_EMAIL=mudassir@amsitservices.com
 ```
 
+**Dokploy only applies environment changes on a redeploy.** After adding or editing variables, click **Deploy** again. The app's first log lines show `Email: SMTP connected …` when it worked; `Email: SMTP not configured` means the variables didn't reach the container.
+
 If your GoDaddy email is Microsoft 365, use `SMTP_HOST=smtp.office365.com`, `SMTP_PORT=587` and `SMTP_SECURE=false`, and make sure SMTP AUTH is enabled for the mailbox. After deploying, open **Admin → Overview → Email (SMTP)** and click **Send test**.
 
 Optional settings:

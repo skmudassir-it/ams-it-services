@@ -18,7 +18,10 @@
     "coreServices": "Servicios principales",
     "moreServices": "Crecimiento y contenido",
     "menu": "Menú",
-    "language": "Idioma"
+    "language": "Idioma",
+    "products": "Productos",
+    "amserp": "AMS ERP",
+    "productsHint": "Software creado y operado por AMS IT Services"
   },
   "promo": "Por tiempo limitado: consulta gratuita de estrategia empresarial con cada proyecto.",
   "promoCta": "Aprovéchela",
@@ -227,7 +230,7 @@
     "emailUs": "Escríbanos",
     "emailNote": "Respuesta en 24 horas",
     "hours": "Horario de atención",
-    "hoursText": "Lun – Vie, 9:00 AM – 6:00 PM IST",
+    "hoursText": "Lun – Vie, 9:00 AM – 6:00 PM CT (hora del Centro de EE. UU.)",
     "accountTitle": "¿Tiene cuenta? Escríbanos directamente",
     "accountText": "Cree una cuenta gratuita para chatear con nuestro equipo, seguir las respuestas y tener todas sus conversaciones en un solo lugar.",
     "accountCta": "Crear cuenta",
@@ -379,10 +382,10 @@
     "title": "Asistente AMS",
     "subtitle": "Suele responder al instante",
     "open": "Chatea con nosotros",
-    "greeting": "¡Hola! 👋 Soy el asistente de AMS IT Services. Pregúnteme sobre nuestros servicios, proyectos, precios o DockPass.",
+    "greeting": "¡Hola! 👋 Soy el asistente de AMS IT Services. Pregúnteme sobre AMS ERP, nuestros servicios, proyectos, precios o DockPass.",
     "suggestions": [
+      "¿Qué es AMS ERP?",
       "¿Qué servicios ofrecen?",
-      "Háblame de DockPass",
       "¿Cuánto cuesta un sitio web?",
       "Muéstrame sus proyectos"
     ],
@@ -408,5 +411,30 @@
     "yes": "Sí",
     "no": "No",
     "actions": "Acciones"
+  },
+  "erp": {
+    "eyebrow": "Nuevo producto insignia",
+    "title": "Conozca AMS ERP",
+    "subtitle": "Nuestra suite empresarial: compras, ventas, producción, almacén, finanzas y RR. HH. en un solo sistema que contabiliza cada transacción en tiempo real.",
+    "learnMore": "Conocer AMS ERP",
+    "visit": "Visitar amserp.org",
+    "signIn": "Iniciar sesión en AMS ERP",
+    "demo": "Solicitar demo",
+    "modulesEyebrow": "Módulos",
+    "modulesTitle": "Todo, desde la primera cotización hasta el último asiento",
+    "modulesSubtitle": "Cada módulo es un proceso completo, no un formulario. Comparten datos maestros y contabilizan en los mismos libros: nada se escribe dos veces.",
+    "howEyebrow": "Cómo funciona",
+    "howTitle": "Contabilice una vez. Libros, stock y paneles se actualizan solos.",
+    "howSubtitle": "Un único motor de contabilización convierte los documentos operativos en asientos cuadrados y enlaza cada uno con su documento de origen.",
+    "platformEyebrow": "Plataforma",
+    "platformTitle": "Pensado para quienes lo usan cada día",
+    "platformSubtitle": "Seguridad, ayuda y herramientas forman parte de cada pantalla, no son complementos.",
+    "deployEyebrow": "Despliegue",
+    "deployTitle": "Su servidor, sus datos, un contenedor.",
+    "deployText": "AMS ERP funciona como un único servicio Node con PostgreSQL. Despliéguelo en su propio servidor o en la nube, comience con la empresa demo o una configuración limpia e importe sus datos.",
+    "ctaTitle": "¿Listo para gestionar su empresa en un solo sistema?",
+    "ctaText": "Hable con nuestro equipo sobre AMS ERP para su empresa: implantación, migración de datos y formación incluidas.",
+    "alsoBy": "También de AMS IT Services",
+    "step": "Paso"
   }
 }

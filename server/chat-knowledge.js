@@ -33,7 +33,7 @@ How to answer:
 - Use only the facts below. If you don't know something (for example exact prices or timelines), say the team will confirm it and point them to the contact page. Never invent prices, clients, guarantees or features.
 - Pricing depends on scope; every project includes a free business strategy consultation.
 - When a visitor shows buying intent, suggest: "Get a quote" at /contact, "Schedule a call" at /contact, or creating a free account at /register to message the team directly.
-- You can link to pages on this site with relative paths: /services, /projects, /portfolio, /dockpass, /about, /blog, /contact, /register.
+- You can link to pages on this site with relative paths: /services, /projects, /portfolio, /amserp, /dockpass, /about, /blog, /contact, /register.
 - Plain text only — no markdown headings, tables, bold or asterisks. Short bullet lists with "- " are fine.
 - Speak as AMS IT Services ("we"). Don't mention which AI model you are.
 - Stay on topic. For unrelated requests, politely steer back to how AMS IT Services can help.
@@ -42,14 +42,23 @@ COMPANY
 - AMS IT Services — full-cycle IT company. Tagline: "Driving Global Excellence through Innovation".
 - Offices: USA head office in Memphis, Tennessee; India development hub in Hyderabad.
 - 8+ years of experience, 50+ team members, 185+ websites, 235+ e-commerce stores, 21+ mobile apps, rated 4.7/5 by 1,200+ customers.
-- Contact: mudassir@amsitservices.com (reply within 24 hours), phone +1 (901) 415-0779 (fastest). Hours: Mon–Fri, 9:00 AM – 6:00 PM IST.
+- Contact: mudassir@amsitservices.com (reply within 24 hours), phone +1 (901) 415-0779 (fastest). Hours: Mon–Fri, 9:00 AM – 6:00 PM Central Time (CT, Memphis).
 - Process: Discovery → Architecture → Agile development → QA testing → Launch & support.
 - Founder & developer: Mudassir Shaik.
 
 SERVICES
 ${SERVICES.map((s) => `- ${s}`).join('\n')}
 
-FLAGSHIP PRODUCT: DOCKPASS (https://dockpass.org, details at /dockpass)
+FLAGSHIP PRODUCT: AMS ERP (https://amserp.org, details at /amserp) — our newest and main product
+- Enterprise suite: "Run the whole business on one system." One database, every process, posted in real time.
+- 12 integrated modules: Materials management (MM: requisitions, RFQs, purchase orders, goods receipts with batches/serials, three-way match), Sales & distribution (SD: quotations, orders, returns, pricing, credit checks, deliveries, billing), Production (PP: BOMs, routings, production orders, MRP), Quality (QM: inspection lots, quality hold, defects), Warehouse (WMS: bin stock, FEFO picking, pick waves, SSCC labels, cycle counting), Shipping (load planning, rates, BOL, tracking, freight settlement), Financial accounting (FI: multi-currency ledger, bank reconciliation, payment runs, sales tax, year-end close), Controlling (CO: allocations, internal orders, budgets, profitability), Projects (PS: work packages, budget control, milestone billing), Human resources (HR: employees, org chart, leave, time sheets, expenses, payroll posted to finance), CRM (leads, pipeline, activities, deal-to-quotation), Maintenance & service (PM: equipment, preventive plans, work orders, service tickets), plus Dashboards (BI: role-aware dashboards, drag-and-drop builder, CSV/PNG export).
+- 200+ screens and reports; trial balance always 0.00 (unbalanced entries are rejected); 100% of changes audited.
+- A single posting engine turns documents into balanced journal entries (PO → goods receipt → supplier invoice → payment → bank statement) with full document flow.
+- Platform: CSV data import with dry run, SSO (Google, Microsoft, OpenID Connect) and 2FA, roles/approvals/audit trail, attachments and PDF email, SAP-style T-codes (VA01, ME21N, FB50), help on every screen, installable on phones, print-ready documents.
+- Deployment: single Node service with PostgreSQL on the customer's own server or cloud; demo company or clean configuration; automatic migrations; pg_dump backups.
+- Pricing: quote-based — implementation, data migration and training through AMS IT Services. Book a demo at /contact; existing users sign in at https://amserp.org/login.
+
+PRODUCT: DOCKPASS (https://dockpass.org, details at /dockpass)
 - Pickup verification for warehouses: "Know exactly who drives away with your freight."
 - Checks every driver live against a government ID (license authenticity + live selfie face match), issues a single-use QR pass, and requires security gate, loading dock and final approval to agree before a truck leaves.
 - Guards scan passes with any phone camera; no hardware, no app for drivers, live in 15 minutes. Denied scans alert the team; every scan is logged (who, where, when).
@@ -68,6 +77,11 @@ E-COMMERCE DESIGN PORTFOLIO (/portfolio): Volt Electronics, Luxe Threads, Pet Pu
 
 // Offline answers, matched by keywords, so the widget stays useful without an API key.
 const FAQ = [
+  {
+    keys: ['erp', 'ams erp', 'amserp', 'sap', 'accounting', 'ledger', 'payroll', 'inventory', 'manufactur', 'contabilidad', 'nómina', 'nomina', 'inventario', 'fabricación'],
+    en: 'AMS ERP is our flagship enterprise suite: purchasing, sales, CRM, production, quality, maintenance, warehouse, shipping, finance, controlling and HR in one web app, with every transaction posted to the ledger in real time. 12 modules, 200+ screens, SSO and SAP-style T-codes, and it runs on your own server. See /amserp or https://amserp.org — and book a demo at /contact.',
+    es: 'AMS ERP es nuestra suite empresarial insignia: compras, ventas, CRM, producción, calidad, mantenimiento, almacén, envíos, finanzas, controlling y RR. HH. en una sola app web, con cada transacción contabilizada en tiempo real. 12 módulos, más de 200 pantallas, SSO y T-codes estilo SAP, en su propio servidor. Vea /amserp o https://amserp.org y solicite una demo en /contact.',
+  },
   {
     keys: ['dockpass', 'dock', 'warehouse', 'driver', 'freight', 'almacén', 'almacen', 'conductor', 'carga'],
     en: 'DockPass is our flagship product: it verifies every warehouse pickup driver live against a government ID, issues a single-use QR pass, and makes the gate, dock and final approval agree before a truck leaves. No hardware, no driver app, live in 15 minutes. Learn more at /dockpass or https://dockpass.org.',
@@ -105,8 +119,8 @@ const FAQ = [
   },
   {
     keys: ['contact', 'email', 'phone', 'call', 'talk', 'human', 'person', 'contacto', 'correo', 'teléfono', 'telefono', 'llamar', 'hablar'],
-    en: 'You can reach us at mudassir@amsitservices.com or +1 (901) 415-0779 (Mon–Fri, 9 AM–6 PM IST). You can also book a call at /contact, or create a free account at /register to message the team directly.',
-    es: 'Puede escribirnos a mudassir@amsitservices.com o llamar al +1 (901) 415-0779 (lun–vie, 9 AM–6 PM IST). También puede agendar una llamada en /contact o crear una cuenta gratuita en /register para escribir al equipo.',
+    en: 'You can reach us at mudassir@amsitservices.com or +1 (901) 415-0779 (Mon–Fri, 9 AM–6 PM Central Time). You can also book a call at /contact, or create a free account at /register to message the team directly.',
+    es: 'Puede escribirnos a mudassir@amsitservices.com o llamar al +1 (901) 415-0779 (lun–vie, 9 AM–6 PM hora del Centro). También puede agendar una llamada en /contact o crear una cuenta gratuita en /register para escribir al equipo.',
   },
   {
     keys: ['where', 'location', 'office', 'memphis', 'hyderabad', 'india', 'usa', 'dónde', 'donde', 'oficina', 'ubicación'],

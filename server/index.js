@@ -1,6 +1,6 @@
 import express from 'express';
-import helmet from 'helmet';
 import compression from 'compression';
+import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import { existsSync } from 'node:fs';
@@ -13,6 +13,7 @@ import threadRoutes from './routes/threads.js';
 import publicRoutes from './routes/public.js';
 import adminRoutes from './routes/admin.js';
 import chatRoutes from './routes/chat.js';
+import { smtpConfig, verifySmtp } from './mailer.js';
 
 if (process.env.NODE_ENV === 'production' && !process.env.JWT_SECRET) {
   console.error('JWT_SECRET must be set in production');
@@ -71,4 +72,16 @@ app.use((err, _req, res, _next) => {
   res.status(500).json({ error: 'Something went wrong' });
 });
 
-app.listen(PORT, () => console.log(`AMS IT Services API listening on http://localhost:${PORT}`));
+app.listen(PORT, async () => {
+  console.log(`AMS IT Services API listening on http://localhost:${PORT}`);
+  // Say up front whether email will really be sent, so a missing setting shows up in the first log lines.
+  const cfg = smtpConfig();
+  if (!cfg.configured) {
+    console.warn('Email: SMTP not configured (SMTP_HOST/SMTP_USER/SMTP_PASS) — emails will only be printed to this log.');
+    return;
+  }
+  const check = await verifySmtp();
+  console.log(check.ok
+    ? `Email: SMTP connected (${cfg.host}:${cfg.port} as ${cfg.user}).`
+    : `Email: SMTP login FAILED for ${cfg.host}:${cfg.port} — ${check.error}`);
+});

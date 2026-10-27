@@ -45,7 +45,7 @@ export default function Footer() {
 
   const companyLinks = [
     ['/about', t('nav.about')], ['/projects', t('nav.projects')], ['/portfolio', t('nav.portfolio')],
-    ['/dockpass', 'DockPass'], ['/blog', t('nav.blog')], ['/contact', t('nav.contact')],
+    ['/amserp', 'AMS ERP'], ['/dockpass', 'DockPass'], ['/blog', t('nav.blog')], ['/contact', t('nav.contact')],
   ];
 
   return (
@@ -84,7 +84,14 @@ export default function Footer() {
               <h4 className="text-sm font-bold uppercase tracking-wider text-ink-muted">{t('footer.newsletter')}</h4>
               <p className="mt-4 text-sm text-ink-soft">{t('footer.newsletterText')}</p>
               <NewsletterForm className="mt-4" />
-              <a href="https://dockpass.org" target="_blank" rel="noreferrer" className="mt-6 flex items-center gap-3 rounded-2xl bg-white/70 p-3 transition hover:bg-white">
+              <Link to="/amserp" className="mt-6 flex items-center gap-3 rounded-2xl bg-white/70 p-3 transition hover:bg-white">
+                <img src="/amserp/logo.svg" alt="" className="h-9 w-9" />
+                <span>
+                  <span className="block font-display text-sm font-extrabold">AMS ERP</span>
+                  <span className="block text-xs text-ink-soft">{t('erp.eyebrow')}</span>
+                </span>
+              </Link>
+              <a href="https://dockpass.org" target="_blank" rel="noreferrer" className="mt-2 flex items-center gap-3 rounded-2xl bg-white/70 p-3 transition hover:bg-white">
                 <img src="/dockpass/logo.webp" alt="DockPass" className="h-8 w-auto" />
                 <span className="text-xs text-ink-soft">{t('flagship.built')}</span>
               </a>

@@ -18,7 +18,10 @@
     "coreServices": "Core services",
     "moreServices": "Growth & content",
     "menu": "Menu",
-    "language": "Language"
+    "language": "Language",
+    "products": "Products",
+    "amserp": "AMS ERP",
+    "productsHint": "Software built and run by AMS IT Services"
   },
   "promo": "Limited time: a free business strategy consultation with every project.",
   "promoCta": "Claim it",
@@ -227,7 +230,7 @@
     "emailUs": "Email us",
     "emailNote": "Reply within 24 hours",
     "hours": "Business hours",
-    "hoursText": "Mon – Fri, 9:00 AM – 6:00 PM IST",
+    "hoursText": "Mon – Fri, 9:00 AM – 6:00 PM CT (US Central)",
     "accountTitle": "Have an account? Message us directly",
     "accountText": "Create a free account to chat with our team, track replies and keep all your project conversations in one place.",
     "accountCta": "Create account",
@@ -379,10 +382,10 @@
     "title": "AMS Assistant",
     "subtitle": "Usually replies instantly",
     "open": "Chat with us",
-    "greeting": "Hi! 👋 I’m the AMS IT Services assistant. Ask me about our services, projects, pricing or DockPass.",
+    "greeting": "Hi! 👋 I’m the AMS IT Services assistant. Ask me about AMS ERP, our services, projects, pricing or DockPass.",
     "suggestions": [
+      "What is AMS ERP?",
       "What services do you offer?",
-      "Tell me about DockPass",
       "How much does a website cost?",
       "Show me your projects"
     ],
@@ -408,5 +411,30 @@
     "yes": "Yes",
     "no": "No",
     "actions": "Actions"
+  },
+  "erp": {
+    "eyebrow": "New flagship product",
+    "title": "Meet AMS ERP",
+    "subtitle": "Our enterprise suite: purchasing, sales, production, warehouse, finance and HR in one system that posts every transaction to the ledger in real time.",
+    "learnMore": "Explore AMS ERP",
+    "visit": "Visit amserp.org",
+    "signIn": "Sign in to AMS ERP",
+    "demo": "Book a demo",
+    "modulesEyebrow": "Modules",
+    "modulesTitle": "Everything from the first quote to the final ledger line",
+    "modulesSubtitle": "Each module is a full process, not a form. Modules share master data and post to the same books, so nothing is keyed twice.",
+    "howEyebrow": "How it works",
+    "howTitle": "Post once. Every ledger, stock figure and dashboard follows.",
+    "howSubtitle": "A single posting engine turns operational documents into balanced journal entries, and links each one back to the document that caused it.",
+    "platformEyebrow": "Platform",
+    "platformTitle": "Built for the people who use it every day",
+    "platformSubtitle": "Security, help and tooling are part of every screen, not add-ons.",
+    "deployEyebrow": "Deploy",
+    "deployTitle": "Your server, your data, one container.",
+    "deployText": "AMS ERP runs as a single Node service with PostgreSQL. Deploy it to your own server or a managed cloud, start from the demo company or a clean configuration, and import your own data.",
+    "ctaTitle": "Ready to run your business on one system?",
+    "ctaText": "Talk to our team about AMS ERP for your company: implementation, data migration and training included.",
+    "alsoBy": "Also from AMS IT Services",
+    "step": "Step"
   }
 }

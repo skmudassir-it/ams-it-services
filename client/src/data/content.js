@@ -242,6 +242,109 @@ export const services = [
   },
 ];
 
+// Flagship product: AMS ERP (amserp.org).
+export const amserp = {
+  url: 'https://amserp.org',
+  loginUrl: 'https://amserp.org/login',
+  tagline: f('Enterprise suite — one database, every process', 'Suite empresarial: una base de datos, todos los procesos'),
+  eyebrow: f('One database · every process · posted in real time', 'Una base de datos · todos los procesos · contabilizado en tiempo real'),
+  headline: f('Run the whole business on one system.', 'Gestione toda la empresa en un solo sistema.'),
+  summary: f(
+    'AMS ERP brings purchasing, sales, CRM, production, quality, maintenance, warehouse, shipping, finance, controlling and HR into a single web application. Every goods movement, invoice, expense claim and payroll run posts straight to the ledger.',
+    'AMS ERP une compras, ventas, CRM, producción, calidad, mantenimiento, almacén, envíos, finanzas, controlling y RR. HH. en una sola aplicación web. Cada movimiento de mercancía, factura, gasto y nómina se contabiliza directamente en el libro mayor.'
+  ),
+  stats: [
+    { value: '12', label: f('integrated modules', 'módulos integrados') },
+    { value: '200+', label: f('screens and reports', 'pantallas e informes') },
+    { value: '0.00', label: f('trial balance, always', 'balance de comprobación, siempre') },
+    { value: '100%', label: f('changes audited', 'cambios auditados') },
+  ],
+  highlights: [f('SAP-style T-codes', 'T-codes estilo SAP'), f('SSO & 2FA', 'SSO y 2FA'), f('Runs on your server', 'En su propio servidor')],
+  modules: [
+    { code: 'MM', icon: 'Package', name: f('Materials management', 'Gestión de materiales'), items: [
+      f('Requisitions, RFQs and release-controlled purchase orders', 'Solicitudes, RFQ y órdenes de compra con liberación'),
+      f('Goods receipts with batches and serial numbers', 'Recepciones con lotes y números de serie'),
+      f('Three-way-match invoice verification', 'Verificación de facturas con conciliación a tres vías')] },
+    { code: 'SD', icon: 'ShoppingCart', name: f('Sales & distribution', 'Ventas y distribución'), items: [
+      f('Quotations, orders, returns and back orders', 'Cotizaciones, pedidos, devoluciones y pedidos pendientes'),
+      f('Pricing conditions, credit and availability checks', 'Condiciones de precio, crédito y disponibilidad'),
+      f('Deliveries, billing and credit memos', 'Entregas, facturación y notas de crédito')] },
+    { code: 'PP', icon: 'Factory', name: f('Production', 'Producción'), items: [
+      f('Bills of materials and routings', 'Listas de materiales y hojas de ruta'),
+      f('Production orders with component issue', 'Órdenes de producción con salida de componentes'),
+      f('Material requirements planning (MRP)', 'Planificación de necesidades de material (MRP)')] },
+    { code: 'QM', icon: 'ClipboardCheck', name: f('Quality', 'Calidad'), items: [
+      f('Inspection lots at goods receipt', 'Lotes de inspección en la recepción'),
+      f('Quality hold until usage decision', 'Bloqueo de calidad hasta la decisión de empleo'),
+      f('Defect recording per lot', 'Registro de defectos por lote')] },
+    { code: 'WMS', icon: 'Warehouse', name: f('Warehouse', 'Almacén'), items: [
+      f('Batch-level bin stock, putaway and FEFO picking', 'Stock por ubicación y lote, ubicación y picking FEFO'),
+      f('Pick waves, packing with SSCC labels', 'Oleadas de picking y embalaje con etiquetas SSCC'),
+      f('Replenishment and ABC cycle counting', 'Reposición e inventario cíclico ABC')] },
+    { code: 'SHP', icon: 'Truck', name: f('Shipping', 'Envíos'), items: [
+      f('Load planning, zone and weight-break rates', 'Planificación de cargas y tarifas por zona y peso'),
+      f('BOL, labels, tracking and customer alerts', 'BOL, etiquetas, seguimiento y avisos al cliente'),
+      f('Freight accrual, carrier invoice settlement', 'Provisión de fletes y liquidación de transportistas')] },
+    { code: 'FI', icon: 'Landmark', name: f('Financial accounting', 'Contabilidad financiera'), items: [
+      f('Multi-currency ledger with revaluation', 'Libro mayor multimoneda con revaluación'),
+      f('Bank reconciliation and payment runs', 'Conciliación bancaria y ejecuciones de pago'),
+      f('Sales tax, year-end close and statements', 'Impuestos, cierre anual y estados financieros')] },
+    { code: 'CO', icon: 'PieChart', name: f('Controlling', 'Controlling'), items: [
+      f('Activity prices, allocations and key-figure cycles', 'Precios de actividad, repartos y ciclos de indicadores'),
+      f('Internal orders with budget availability control', 'Órdenes internas con control de presupuesto'),
+      f('Plan versions and profitability by customer and product', 'Versiones de plan y rentabilidad por cliente y producto')] },
+    { code: 'PS', icon: 'FolderKanban', name: f('Projects', 'Proyectos'), items: [
+      f('Work packages with budgets and budget control', 'Paquetes de trabajo con presupuesto y control'),
+      f('Time, materials and purchase orders charged to projects', 'Horas, materiales y compras imputados a proyectos'),
+      f('Budget vs actual and milestone billing', 'Presupuesto vs. real y facturación por hitos')] },
+    { code: 'HR', icon: 'Users', name: f('Human resources', 'Recursos humanos'), items: [
+      f('Employees, positions and org chart', 'Empleados, puestos y organigrama'),
+      f('Leave, time sheets and expense claims', 'Ausencias, partes de horas y gastos'),
+      f('Payroll posted to finance by cost center', 'Nómina contabilizada por centro de coste')] },
+    { code: 'CRM', icon: 'Target', name: f('Customer relations', 'Relación con clientes'), items: [
+      f('Leads and opportunity pipeline', 'Prospectos y embudo de oportunidades'),
+      f('Activities and follow-ups', 'Actividades y seguimientos'),
+      f('Win a deal straight into a quotation', 'Convierta una oportunidad ganada en cotización')] },
+    { code: 'PM', icon: 'Wrench', name: f('Maintenance & service', 'Mantenimiento y servicio'), items: [
+      f('Equipment and preventive plans', 'Equipos y planes preventivos'),
+      f('Maintenance work orders', 'Órdenes de mantenimiento'),
+      f('Service tickets and warranties', 'Tickets de servicio y garantías')] },
+    { code: 'BI', icon: 'LayoutDashboard', name: f('Dashboards', 'Paneles'), items: [
+      f('Role-aware home dashboard', 'Panel de inicio según el rol'),
+      f('Drag-and-drop dashboard builder', 'Constructor de paneles de arrastrar y soltar'),
+      f('Share with roles, export CSV and PNG', 'Comparta por roles y exporte a CSV y PNG')] },
+  ],
+  steps: [
+    { title: f('Purchase order', 'Orden de compra'), entry: f('Commitment', 'Compromiso') },
+    { title: f('Goods receipt', 'Recepción de mercancía'), entry: f('Dr Inventory · Cr GR/IR', 'D Inventario · H GR/IR') },
+    { title: f('Supplier invoice', 'Factura del proveedor'), entry: f('Dr GR/IR · Cr Vendor', 'D GR/IR · H Proveedor') },
+    { title: f('Payment', 'Pago'), entry: f('Dr Vendor · Cr Bank', 'D Proveedor · H Banco') },
+    { title: f('Bank statement', 'Extracto bancario'), entry: f('Matched & reconciled', 'Conciliado') },
+  ],
+  pillars: [
+    { title: f('Document flow', 'Flujo de documentos'), text: f('Open any document and see its whole chain, from quotation to payment, with links in both directions.', 'Abra cualquier documento y vea toda su cadena, de la cotización al pago, con enlaces en ambos sentidos.') },
+    { title: f('Always balanced', 'Siempre cuadrado'), text: f('Unbalanced entries are rejected. Inventory accounts equal stock value and GR/IR equals goods not yet invoiced.', 'Los asientos descuadrados se rechazan. Las cuentas de inventario igualan el valor del stock y GR/IR la mercancía no facturada.') },
+    { title: f('Controlled periods', 'Períodos controlados'), text: f('Close periods and years, carry balances forward, and reverse entries instead of deleting them.', 'Cierre períodos y ejercicios, traslade saldos y anule asientos en lugar de borrarlos.') },
+  ],
+  platform: [
+    { icon: 'Upload', title: f('Data import', 'Importación de datos'), text: f('Load customers, vendors, materials, opening balances and open items from CSV, with a dry run first.', 'Cargue clientes, proveedores, materiales, saldos iniciales y partidas abiertas desde CSV, con prueba previa.') },
+    { icon: 'KeyRound', title: f('Single sign-on & 2FA', 'Inicio de sesión único y 2FA'), text: f('Google, Microsoft or any OpenID Connect provider, plus authenticator codes, lockout and rotating sessions.', 'Google, Microsoft o cualquier proveedor OpenID Connect, con códigos de autenticador, bloqueo y sesiones rotativas.') },
+    { icon: 'ShieldCheck', title: f('Roles & audit trail', 'Roles y auditoría'), text: f('Permissions per module and action, approval rules by amount, and a before/after record of every change.', 'Permisos por módulo y acción, reglas de aprobación por importe y registro antes/después de cada cambio.') },
+    { icon: 'Paperclip', title: f('Attachments & email', 'Adjuntos y correo'), text: f('Attach files to any document and email POs, invoices and payslips as PDFs straight from the screen.', 'Adjunte archivos a cualquier documento y envíe pedidos, facturas y nóminas en PDF desde la pantalla.') },
+    { icon: 'Terminal', title: f('T-codes & search', 'T-codes y búsqueda'), text: f('Type VA01, ME21N or FB50 in the command bar and land on the screen — familiar to SAP users from day one.', 'Escriba VA01, ME21N o FB50 en la barra de comandos y llegue a la pantalla: familiar para usuarios de SAP.') },
+    { icon: 'HelpCircle', title: f('Help on every screen', 'Ayuda en cada pantalla'), text: f('Press ? for what the screen does and what each field means, plus guided tours.', 'Pulse ? para saber qué hace la pantalla y qué significa cada campo, con recorridos guiados.') },
+    { icon: 'Smartphone', title: f('Install on any phone', 'Instálelo en cualquier teléfono'), text: f('Add it to the home screen like an app; warehouse tasks and the time clock are built for phones.', 'Añádalo a la pantalla de inicio como una app; las tareas de almacén y el fichaje están pensados para móviles.') },
+    { icon: 'Printer', title: f('Print-ready documents', 'Documentos listos para imprimir'), text: f('Purchase orders, invoices, bills of lading, labels and payslips print cleanly or save as PDF.', 'Pedidos, facturas, conocimientos de embarque, etiquetas y nóminas se imprimen o guardan en PDF.') },
+  ],
+  deploy: [
+    f('Single Node service with PostgreSQL — your server, your data', 'Un solo servicio Node con PostgreSQL: su servidor, sus datos'),
+    f('Migrations run automatically on start', 'Las migraciones se ejecutan al iniciar'),
+    f('Start from the demo company or a clean configuration', 'Comience con la empresa demo o una configuración limpia'),
+    f('Scheduled jobs for depreciation, dunning and payment runs', 'Tareas programadas de amortización, reclamaciones y pagos'),
+    f('Backups with standard pg_dump', 'Copias de seguridad con pg_dump estándar'),
+  ],
+};
+
 export const dockpass = {
   url: 'https://dockpass.org',
   registerUrl: 'https://dockpass.org/register',

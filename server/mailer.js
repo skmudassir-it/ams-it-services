@@ -2,7 +2,8 @@
 // When SMTP isn't configured, emails are printed to the console instead so local development still works.
 import nodemailer from 'nodemailer';
 
-const env = (k, d = '') => (process.env[k] ?? d).trim();
+// Tolerates values pasted with surrounding quotes in hosting dashboards (e.g. SMTP_PASS="secret").
+const env = (k, d = '') => (process.env[k] ?? d).trim().replace(/^(["'])(.*)\1$/, '$2');
 
 export function smtpConfig() {
   const host = env('SMTP_HOST');

@@ -155,6 +155,21 @@ function seed() {
     })();
   }
 
+  // v3: AMS ERP (amserp.org) becomes the flagship product, listed before DockPass.
+  if (db.pragma('user_version', { simple: true }) < 3) {
+    db.transaction(() => {
+      if (!db.prepare("SELECT 1 FROM projects WHERE url = 'https://amserp.org'").get()) {
+        db.prepare(`INSERT INTO projects (kind, name, url, category, desc_en, desc_es, image, featured, sort)
+          VALUES ('product', 'AMS ERP', 'https://amserp.org', 'saas', ?, ?, '/amserp/dashboard.jpg', 1, -1)`).run(
+          'Enterprise suite that runs purchasing, sales, production, warehouse, shipping, finance, controlling and HR on one database, posting every transaction to the ledger in real time.',
+          'Suite empresarial que gestiona compras, ventas, producción, almacén, envíos, finanzas, controlling y RR. HH. en una sola base de datos, contabilizando cada transacción en tiempo real.'
+        );
+      }
+      db.prepare("UPDATE projects SET featured = 0 WHERE kind = 'product' AND name = 'DockPass'").run();
+      db.pragma('user_version = 3');
+    })();
+  }
+
   // Additive columns, checked on every start so they apply regardless of migration history.
   if (!db.prepare('PRAGMA table_info(users)').all().some((c) => c.name === 'lang')) {
     db.exec("ALTER TABLE users ADD COLUMN lang TEXT NOT NULL DEFAULT 'en'");

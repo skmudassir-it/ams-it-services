@@ -12,7 +12,7 @@ const load = () => {
 
 // Turns site paths ("/contact") and URLs in bot replies into links.
 function RichText({ text }) {
-  const parts = text.split(/(https?:\/\/[^\s),]+|(?<![\w.])\/(?:services|projects|portfolio|dockpass|about|blog|contact|register|login|dashboard)[\w\-/]*)/g);
+  const parts = text.split(/(https?:\/\/[^\s),]+|(?<![\w.])\/(?:services|projects|portfolio|amserp|dockpass|about|blog|contact|register|login|dashboard)[\w\-/]*)/g);
   return parts.map((part, i) => {
     if (/^https?:\/\//.test(part)) {
       const clean = part.replace(/[.!?]+$/, '');

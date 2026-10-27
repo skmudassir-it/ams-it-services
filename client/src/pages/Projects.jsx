@@ -9,22 +9,37 @@ import { img } from '../lib/images';
 import { useFetch } from '../lib/useFetch';
 import { useLocalized } from '../i18n';
 
+// Per-product page link and branding; products added in the CMS without an entry fall back to name + live link.
+const PRODUCT_PAGES = {
+  'AMS ERP': {
+    page: '/amserp',
+    brand: (
+      <span className="mt-4 flex items-center gap-3">
+        <img src="/amserp/logo.svg" alt="" className="h-12 w-12" />
+        <span className="font-display text-3xl font-extrabold">AMS ERP</span>
+      </span>
+    ),
+  },
+  DockPass: { page: '/dockpass', brand: <img src="/dockpass/logo.webp" alt="DockPass" className="mt-4 w-56" /> },
+};
+
 function ProductBanner({ product }) {
   const { t } = useTranslation();
   const { pick } = useLocalized();
+  const meta = PRODUCT_PAGES[product.name];
   return (
     <Reveal>
       <div className="glass grid items-center gap-6 overflow-hidden !rounded-[2rem] p-4 sm:p-6 md:grid-cols-[1.1fr_1fr]">
         <div className="overflow-hidden rounded-2xl">
-          <Img src={product.image || '/dockpass/dock.webp'} alt={product.name} className="aspect-[16/9]" />
+          <Img src={product.image} alt={product.name} className="aspect-[16/9]" imgClassName="object-top" />
         </div>
         <div className="p-2">
-          <span className="eyebrow"><Sparkles className="h-3.5 w-3.5" /> {t('projectsPage.products')}</span>
-          <img src="/dockpass/logo.webp" alt={product.name} className="mt-4 w-56" />
+          <span className="eyebrow"><Sparkles className="h-3.5 w-3.5" /> {product.featured ? t('hero.flagship') : t('projectsPage.products')}</span>
+          {meta?.brand || <h2 className="mt-4">{product.name}</h2>}
           <p className="lead mt-3">{pick(product, 'desc')}</p>
           <div className="mt-5 flex flex-wrap gap-3">
-            <Link to="/dockpass" className="btn-primary">{t('flagship.learnMore')} <ArrowRight className="h-4 w-4" /></Link>
-            <a href={product.url} target="_blank" rel="noreferrer" className="btn-glass">{t('flagship.visit')} <ExternalLink className="h-4 w-4" /></a>
+            {meta && <Link to={meta.page} className="btn-primary">{t('servicesPage.learnMore')} <ArrowRight className="h-4 w-4" /></Link>}
+            {product.url && <a href={product.url} target="_blank" rel="noreferrer" className="btn-glass">{product.url.replace(/^https?:\/\//, '')} <ExternalLink className="h-4 w-4" /></a>}
           </div>
         </div>
       </div>

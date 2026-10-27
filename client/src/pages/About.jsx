@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Award, Eye, HeartHandshake, Lightbulb, MapPin } from 'lucide-react';
 import { Img, PageHero, Reveal, SectionHeading, Seo } from '../components/ui';
-import { CtaBanner, DockPassShowcase, LogoMarquee, StatsBand } from '../components/sections';
+import { AmsErpShowcase, CtaBanner, DockPassShowcase, LogoMarquee, StatsBand } from '../components/sections';
 import { img } from '../lib/images';
 
 const valueIcons = [Award, Eye, HeartHandshake, Lightbulb];
@@ -86,6 +86,7 @@ export default function About() {
         </div>
       </section>
 
+      <AmsErpShowcase />
       <DockPassShowcase />
       <section className="py-8"><div className="container"><LogoMarquee /></div></section>
       <CtaBanner />

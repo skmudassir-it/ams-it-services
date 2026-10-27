@@ -18,7 +18,7 @@ export default function DockPass() {
         <div className="pointer-events-none absolute -right-40 top-10 -z-10 h-[30rem] w-[30rem] rounded-full bg-sky-300/30 blur-3xl" />
         <div className="container grid items-center gap-12 pb-16 lg:grid-cols-2">
           <Reveal>
-            <span className="eyebrow">{t('flagship.eyebrow')} · AMS IT Services</span>
+            <span className="eyebrow">{t('nav.products')} · AMS IT Services</span>
             <img src="/dockpass/logo.webp" alt="DockPass — Simple. Secure. Verified." className="mt-6 w-full max-w-md" />
             <p className="mt-6 text-sm font-semibold uppercase tracking-wider text-sky-700">{pick(dockpass.tagline)}</p>
             <h1 className="mt-2">{pick(dockpass.headline)}</h1>

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowRight, ArrowUpRight, Check, ExternalLink, MessageSquare, Sparkles } from 'lucide-react';
 import { useLocalized } from '../i18n';
-import { categoryLabel, dockpass, stats, techLogos } from '../data/content';
+import { amserp, categoryLabel, dockpass, stats, techLogos } from '../data/content';
 import { img, projectImage } from '../lib/images';
 import { formatDate } from '../lib/api';
 import { Counter, Img, Reveal, SectionHeading } from './ui';
@@ -159,7 +159,69 @@ export function CtaBanner() {
   );
 }
 
-// Home-page flagship product feature.
+// Home-page flagship: AMS ERP.
+export function AmsErpShowcase() {
+  const { t } = useTranslation();
+  const { pick } = useLocalized();
+  return (
+    <section className="section relative" id="amserp">
+      <div className="container">
+        <Reveal>
+          <div className="glass relative overflow-hidden !rounded-[2rem] p-5 sm:p-8 lg:p-12">
+            <div className="pointer-events-none absolute -left-32 -top-32 h-96 w-96 rounded-full bg-indigo-300/30 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-40 -right-24 h-[28rem] w-[28rem] rounded-full bg-teal-300/30 blur-3xl" />
+            <div className="relative mx-auto max-w-3xl text-center">
+              <span className="eyebrow"><Sparkles className="h-3.5 w-3.5" /> {t('erp.eyebrow')}</span>
+              <div className="mt-6 flex items-center justify-center gap-3">
+                <img src="/amserp/logo.svg" alt="" className="h-12 w-12" />
+                <div className="text-left">
+                  <p className="font-display text-2xl font-extrabold leading-none">AMS ERP</p>
+                  <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-muted">Enterprise suite</p>
+                </div>
+              </div>
+              <h2 className="mt-6">
+                {pick(amserp.headline).replace(/\.$/, '').split(' ').slice(0, -2).join(' ')}{' '}
+                <span className="bg-gradient-to-r from-indigo-500 to-teal-500 bg-clip-text text-transparent">{pick(amserp.headline).replace(/\.$/, '').split(' ').slice(-2).join(' ')}</span>.
+              </h2>
+              <p className="lead mt-4">{pick(amserp.summary)}</p>
+              <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+                <Link to="/amserp" className="btn btn-lg bg-gradient-to-r from-indigo-500 to-teal-500 text-white shadow-lg shadow-indigo-500/25 hover:brightness-105">{t('erp.learnMore')} <ArrowRight className="h-5 w-5" /></Link>
+                <a href={amserp.url} target="_blank" rel="noreferrer" className="btn-glass btn-lg">{t('erp.visit')} <ExternalLink className="h-4 w-4" /></a>
+              </div>
+            </div>
+
+            <div className="relative mt-10 overflow-hidden rounded-2xl border border-white bg-white/70 shadow-lift">
+              <div className="flex items-center gap-1.5 border-b border-slate-100 bg-white/90 px-4 py-2.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-rose-300" /><span className="h-2.5 w-2.5 rounded-full bg-amber-300" /><span className="h-2.5 w-2.5 rounded-full bg-emerald-300" />
+                <span className="ml-3 rounded-md bg-slate-100 px-2.5 py-0.5 text-[11px] text-ink-muted">amserp.org</span>
+              </div>
+              <Img src="/amserp/dashboard.jpg" alt="AMS ERP home dashboard with cash, income, receivables and payables KPIs" className="aspect-[16/10]" imgClassName="object-top" />
+            </div>
+
+            <div className="relative mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
+              {amserp.stats.map((s) => (
+                <div key={s.value} className="rounded-2xl bg-white/70 p-4 text-center">
+                  <p className="font-display text-3xl font-extrabold text-indigo-600">{s.value}</p>
+                  <p className="mt-1 text-xs font-medium text-ink-soft sm:text-sm">{pick(s.label)}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="relative mt-8 flex flex-wrap justify-center gap-2">
+              {amserp.modules.map((m) => (
+                <span key={m.code} className="inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1.5 text-sm font-medium shadow-sm">
+                  <span className="rounded bg-indigo-50 px-1.5 text-[11px] font-bold text-indigo-600">{m.code}</span> {pick(m.name)}
+                </span>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+// Home-page product feature: DockPass.
 export function DockPassShowcase() {
   const { t } = useTranslation();
   const { pick } = useLocalized();
@@ -172,7 +234,7 @@ export function DockPassShowcase() {
             <div className="pointer-events-none absolute -bottom-32 -left-20 h-96 w-96 rounded-full bg-brand-violet/20 blur-3xl" />
             <div className="relative grid items-center gap-10 lg:grid-cols-2">
               <div>
-                <span className="eyebrow"><Sparkles className="h-3.5 w-3.5" /> {t('flagship.eyebrow')}</span>
+                <span className="eyebrow"><Sparkles className="h-3.5 w-3.5" /> {t('erp.alsoBy')}</span>
                 <img src="/dockpass/logo.webp" alt="DockPass — Simple. Secure. Verified." className="mt-6 w-full max-w-sm" />
                 <p className="mt-4 text-sm font-semibold uppercase tracking-wider text-sky-700">{pick(dockpass.tagline)}</p>
                 <h2 className="mt-2">{pick(dockpass.headline)}</h2>

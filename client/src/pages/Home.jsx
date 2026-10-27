@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { ArrowRight, Star, Globe2, CheckCircle2, Sparkles, MapPin } from 'lucide-react';
+import { ArrowRight, Star, Globe2, CheckCircle2, MapPin } from 'lucide-react';
 import { Img, Reveal, SectionHeading, Seo, Skeleton } from '../components/ui';
-import { CtaBanner, DockPassShowcase, LogoMarquee, PostCard, ProcessSteps, ProjectCard, ServiceCard, StatsBand } from '../components/sections';
+import { AmsErpShowcase, CtaBanner, DockPassShowcase, LogoMarquee, PostCard, ProcessSteps, ProjectCard, ServiceCard, StatsBand } from '../components/sections';
 import { services } from '../data/content';
 import { img } from '../lib/images';
 import { useFetch } from '../lib/useFetch';
@@ -45,11 +45,11 @@ function Hero() {
             <p className="font-display text-3xl font-extrabold text-gradient">150+</p>
             <p className="text-xs font-medium text-ink-soft">{t('hero.liveApps')}</p>
           </div>
-          <Link to="/dockpass" className="glass-strong absolute -right-2 -top-5 flex items-center gap-3 rounded-2xl p-3 transition hover:scale-[1.02] sm:-right-6">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-600 text-white"><Sparkles className="h-5 w-5" /></span>
+          <Link to="/amserp" className="glass-strong absolute -right-2 -top-5 flex items-center gap-3 rounded-2xl p-3 transition hover:scale-[1.02] sm:-right-6">
+            <img src="/amserp/logo.svg" alt="" className="h-10 w-10" />
             <span>
               <span className="block text-[11px] font-semibold uppercase tracking-wide text-ink-muted">{t('hero.flagship')}</span>
-              <span className="block font-display text-sm font-extrabold">DockPass</span>
+              <span className="block font-display text-sm font-extrabold">AMS ERP</span>
             </span>
           </Link>
           <div className="glass-strong absolute -bottom-5 right-6 hidden items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold sm:flex">
@@ -148,6 +148,7 @@ export default function Home() {
     <>
       <Seo description={t('hero.subtitle')} />
       <Hero />
+      <AmsErpShowcase />
       <DockPassShowcase />
       <section className="section">
         <div className="container">

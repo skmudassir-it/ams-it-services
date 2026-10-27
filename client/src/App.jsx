@@ -10,6 +10,7 @@ const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
 const Projects = lazy(() => import('./pages/Projects'));
 const Portfolio = lazy(() => import('./pages/Portfolio'));
 const DockPass = lazy(() => import('./pages/DockPass'));
+const AmsErp = lazy(() => import('./pages/AmsErp'));
 const Blog = lazy(() => import('./pages/Blog'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 const Contact = lazy(() => import('./pages/Contact'));
@@ -52,6 +53,8 @@ export default function App() {
         <Route path="portfolio" element={<Portfolio />} />
         <Route path="portfolios" element={<Navigate to="/portfolio" replace />} />
         <Route path="dockpass" element={<DockPass />} />
+        <Route path="amserp" element={<AmsErp />} />
+        <Route path="erp" element={<Navigate to="/amserp" replace />} />
         <Route path="blog" element={<Blog />} />
         <Route path="blog/:slug" element={<BlogPost />} />
         <Route path="contact" element={<Contact />} />
